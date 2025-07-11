@@ -1,0 +1,15 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    environment:
+      vars:
+        CM_KEYSTORE: Encrypted(...)  # Add your encrypted keystore credentials if needed
+        CM_KEYSTORE_PASSWORD: Encrypted(...)
+        CM_KEY_PASSWORD: Encrypted(...)
+      groups:
+        - keystore_credentials
+    scripts:
+      - name: Build debug APK
+        script: ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/**/*.apk
